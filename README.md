@@ -7,6 +7,7 @@ It includes a beautiful UI with dynamic themes, wind compass visualization, UV i
 🌐 Live Demo
 
 👉 Try SKYCAST here:
+
 https://skycast-weather-ds.netlify.app/
 
 🚀 Features
@@ -29,6 +30,7 @@ https://skycast-weather-ds.netlify.app/
 * CSS3 (Glassmorphism + gradients + animations)
 * JavaScript (ES6+)
 * Open‑Meteo (Weather + Geocoding + AQI APIs)
+  
 🌐 APIs Used
 
 This project uses free, no-authentication APIs:
@@ -38,18 +40,21 @@ This project uses free, no-authentication APIs:
 Converts city names into coordinates:
 
 https://geocoding-api.open-meteo.com/v1/search
+
 🌤️ Weather Forecast API
 
 Provides:
 
 * current weather
 * daily forecast (5 days)
+  
 https://api.open-meteo.com/v1/forecast
+
 🌫️ Air Quality API
 
 Provides AQI (US scale):
 
 https://air-quality-api.open-meteo.com/v1/air-quality
-JavaScript (ES6+)
+
 Open‑Meteo (Weather + Geocoding + AQI APIs)
-🌐 APIs Used
+🌐 A
