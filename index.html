@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Skycast — Know Your Sky</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body id="body">
+
+  <div class="stars" id="stars"></div>
+
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <div class="hero" id="hero">
+      <div class="badge">
+        <span class="dot"></span> SKYCAST <span class="dot"></span>
+      </div>
+      <div id="heroTitle">
+        <h1>Know Your <span class="grad-text">Sky</span>,<br/>Anywhere.</h1>
+        <p class="sub">Real-time weather powered by AI — search any city on Earth.</p>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <div class="search-bar">
+        <div class="search-icon">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <input id="cityInput" type="text" placeholder="Search city, country, ZIP code…" autocomplete="off" spellcheck="false"/>
+        <button id="searchBtn" class="search-btn">Search</button>
+      </div>
+      <div class="fb err" id="errBox"></div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="out" id="out">
+
+      <!-- Main weather card -->
+      <div class="glass mcard" id="mcard">
+        <div class="glow-blob blob1"></div>
+        <div class="glow-blob blob2"></div>
+
+        <div class="top-row">
+          <div class="loc-info">
+            <div class="loc-tag">
+              <svg width="13" height="13" id="pinIcon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span id="oRegion">—</span>
+            </div>
+            <div class="city-name" id="oCity">—</div>
+            <div class="date-time" id="oDateTime">—</div>
+
+            <div class="unit-toggle">
+              <button class="ut on" id="btnC" data-unit="C">°C</button>
+              <button class="ut" id="btnF" data-unit="F">°F</button>
+            </div>
+          </div>
+
+          <div class="wx-col">
+            <span class="wx-icon" id="oIcon">—</span>
+            <div class="wx-cond" id="oCond">—</div>
+          </div>
+        </div>
+
+        <div class="temp-area">
+          <div class="temp-num" id="oTemp">—</div>
+          <div class="temp-side">
+            <div class="feels">Feels like <strong id="oFeels">—</strong></div>
+            <div class="hilo">
+              <span class="hi" id="oHi">↑ —</span>
+              <span class="lo" id="oLo">↓ —</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <!-- Stat grid -->
+        <div class="stat-grid" id="statGrid"></div>
+
+        <!-- Sunrise/sunset -->
+        <div class="sun-bar">
+          <div class="sun-item">
+            <div class="sun-lbl">🌅 SUNRISE</div>
+            <div class="sun-val" id="oSR">—</div>
+          </div>
+          <div class="sun-arc">
+            <svg viewBox="0 0 100 60" fill="none">
+              <defs>
+                <linearGradient id="arcGrad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#FCD34D" stop-opacity=".2"/>
+                  <stop offset="50%" stop-color="#FCD34D" stop-opacity=".6"/>
+                  <stop offset="100%" stop-color="#FB923C" stop-opacity=".2"/>
+                </linearGradient>
+                <filter id="sunGlow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <path d="M5 50 Q50 0 95 50" stroke="url(#arcGrad)" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>
+              <circle id="sunDot" cx="50" cy="10" r="6" fill="#FCD34D" filter="url(#sunGlow)"/>
+              <circle id="sunDotInner" cx="50" cy="10" r="3.5" fill="#fff"/>
+            </svg>
+            <div class="daylight-pct" id="daylightPct">— of daylight passed</div>
+          </div>
+          <div class="sun-item">
+            <div class="sun-lbl">🌇 SUNSET</div>
+            <div class="sun-val" id="oSS">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forecast -->
+      <div class="section-label"><span>5-DAY FORECAST</span></div>
+      <div class="fc-strip" id="fcStrip"></div>
+
+      <!-- AQI -->
+      <div class="section-label" id="aqiLabel" style="display:none"><span>AIR QUALITY INDEX</span></div>
+      <div class="glass aqi-card" id="aqiCard" style="display:none">
+        <div class="aqi-inner">
+          <div class="aqi-dot" id="aqiDot">—</div>
+          <div class="aqi-text">
+            <div class="aqi-tag">AIR QUALITY</div>
+            <div class="aqi-name" id="aqiName">—</div>
+            <div class="aqi-note" id="aqiNote">—</div>
+          </div>
+          <div class="aqi-bar-wrap">
+            <div class="aqi-bar">
+              <div class="aqi-bar-dot" id="aqiBarDot"></div>
+            </div>
+            <div class="aqi-marks">
+              <span>0</span><span>100</span><span>200</span><span>300</span><span>400</span><span>500</span>
+            </div>
+            <div class="aqi-cat-labels">
+              <span style="color:#4ADE80">Good</span>
+              <span style="color:#FACC15">Moderate</span>
+              <span style="color:#FB923C">Poor</span>
+              <span style="color:#F87171">Very Poor</span>
+              <span style="color:#C084FC">Severe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">SKYCAST · POWERED BY AI + LIVE WEB SEARCH</div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
