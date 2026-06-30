@@ -57,4 +57,4 @@ Provides AQI (US scale):
 https://air-quality-api.open-meteo.com/v1/air-quality
 
 Open‑Meteo (Weather + Geocoding + AQI APIs)
-🌐 A
+
