@@ -1,4 +1,4 @@
-🌦️ SKYCAST — Real-Time Weather Dashboard
+🌦️ SKYCAST — Real-Time Weather Dashboard.
 
 SKYCAST is a modern, fully responsive weather web application that provides real-time weather conditions, air quality data, and a 5-day forecast using Open-Meteo APIs (no API key required).
 
